@@ -29,7 +29,8 @@ The most important thing it offers is: very fast queries on the indexedDB databa
           },
           db: {
             type: Object,
-            value: null
+            value: null,
+            notify: true
           }
         },
 
@@ -39,6 +40,10 @@ The most important thing it offers is: very fast queries on the indexedDB databa
             // init
             this.db = new Dexie(this.dbName);
           }
+        },
+
+        getDb: function() {
+          return this.getDb();
         },
 
         deleteDatabase: function(then, error) {
