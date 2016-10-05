@@ -1,0 +1,59 @@
+<link rel="import" href="../polymer/polymer.html">
+<script src="../dexie/dist/dexie.min.js"></script>
+
+<!--
+`etools-dexiejs`
+
+Polymer element that will add Dexies.js to your app and provide access to browser indexedDB database.
+Dexie.js is a wrapper library for indexedDB with many features and a very good
+[documentation](https://github.com/dfahlander/Dexie.js/wiki).
+The most important thing it offers is: very fast queries on the indexedDB database.
+
+
+
+@demo demo/index.html 
+-->
+
+<dom-module id="etools-dexiejs">
+  <script>
+    (function() {
+      'use strict';
+      Polymer({
+
+        is: 'etools-dexiejs',
+
+        properties: {
+          dbName: {
+            type: String,
+            value: '',
+          },
+          db: {
+            type: Object,
+            value: null
+          }
+        },
+
+        ready: function() {
+          // init dexie database only if dbName was provided
+          if (typeof this.dbName === 'string' && this.dbName !== '') {
+            // init
+            this.db = new Dexie(this.dbName);
+          }
+        },
+
+        deleteDatabase: function(then, error) {
+          this.db.delete().then(function() {
+            if (then) {
+              then();
+            }
+          }).catch(function (err) {
+            if (error) {
+              error(err);
+            }
+          });
+        }
+
+      });
+    })();
+  </script>
+</dom-module>

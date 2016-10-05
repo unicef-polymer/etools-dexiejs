@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>etools-dexiejs test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../etools-dexiejs.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <etools-dexiejs></etools-dexiejs>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('etools-dexiejs', function() {
+
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'etools-dexiejs');
+        });
+
+      });
+    </script>
+  </body>
+</html>
