@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
-<script src="../dexie/dist/dexie.min.js"></script>
+<script src="../dexie/dist/dexie.js"></script>
+<!-- TODO: to be replaced with min version after sourcemap url is fixed  -->
 
 <!--
 `etools-dexiejs`
@@ -11,7 +12,7 @@ The most important thing it offers is: very fast queries on the indexedDB databa
 
 
 
-@demo demo/index.html 
+@demo demo/index.html
 -->
 
 <dom-module id="etools-dexiejs">
@@ -26,19 +27,20 @@ The most important thing it offers is: very fast queries on the indexedDB databa
           dbName: {
             type: String,
             value: '',
+            observer: '_initDb'
           },
           db: {
             type: Object,
-            value: null,
-            notify: true
+            value: null
           }
         },
 
-        ready: function() {
+        _initDb: function(name) {
           // init dexie database only if dbName was provided
-          if (typeof this.dbName === 'string' && this.dbName !== '') {
+          if (typeof name === 'string' && name !== '') {
             // init
-            this.db = new Dexie(this.dbName);
+            this.db = new Dexie(name);
+            this.fire('db-ready', {});
           }
         },
 
