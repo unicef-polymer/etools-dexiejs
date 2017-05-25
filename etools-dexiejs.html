@@ -36,6 +36,7 @@ The most important thing it offers is: very fast queries on the indexedDB databa
           // init dexie database only if dbName was provided
           if (typeof name === 'string' && name !== '') {
             // init
+            // eslint-disable-next-line no-undef
             this.db = new Dexie(name);
             this.fire('db-ready', {});
           }
@@ -50,7 +51,7 @@ The most important thing it offers is: very fast queries on the indexedDB databa
             if (then) {
               then();
             }
-          }).catch(function (err) {
+          }).catch(function(err) {
             if (error) {
               error(err);
             }
